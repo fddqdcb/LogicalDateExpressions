@@ -51,7 +51,9 @@ public class ParseDateExpressionsTest
         recognize("1970 or 1975 and >1990 or 2000");
 
         recognize("2010-2012");
+        recognize("2010 to 2012");
         recognize("2010 - 03.2012");
+        recognize("2010 TO 03.2012");
         recognize("7.05.2010 - 2012");
 
         recognize("(2010)");

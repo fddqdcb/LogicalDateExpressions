@@ -1,7 +1,6 @@
 package com.github.fddqdcb.dateparser.integrationtest.data;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
 

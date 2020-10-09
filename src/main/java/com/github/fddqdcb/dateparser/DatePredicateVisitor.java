@@ -38,7 +38,7 @@ public class DatePredicateVisitor extends LogicalDateExpressionsBaseVisitor<Pred
         }
         else
         {
-            return builder.not(visitChildren(ctx.expr()));
+            return builder.not(visit(ctx.expr()));
         }
     }
 
@@ -53,8 +53,8 @@ public class DatePredicateVisitor extends LogicalDateExpressionsBaseVisitor<Pred
         else
         {
             return builder.and(
-                    visitChildren(ctx.leftExpr),
-                    visitChildren(ctx.rightExpr)
+                    visit(ctx.leftExpr),
+                    visit(ctx.rightExpr)
             );
         }
     }
@@ -68,8 +68,8 @@ public class DatePredicateVisitor extends LogicalDateExpressionsBaseVisitor<Pred
             return visitChildren(ctx);
         }
         return builder.or(
-                visitChildren(ctx.leftExpr),
-                visitChildren(ctx.rightExpr)
+                visit(ctx.leftExpr),
+                visit(ctx.rightExpr)
         );
     }
 

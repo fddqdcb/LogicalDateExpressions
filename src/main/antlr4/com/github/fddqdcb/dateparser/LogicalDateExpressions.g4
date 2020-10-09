@@ -46,7 +46,7 @@ compareDateExpr
         ;
 
 fromToDateExpr
-        :   fromDate=regularDate MINUS toDate=regularDate
+        :   fromDate=regularDate TO toDate=regularDate
         ;
 
 regularDate
@@ -106,8 +106,11 @@ OR      :   [Oo][Rr]
         |   '|'
         ;
 
+TO      :   '-'
+        |   [Tt][Oo]
+        ;
+
 DIGIT   :   [0-9];
-MINUS   :   '-';
 GT      :   '>';
 GE      :   '>=';
 LT      :   '<';
@@ -116,7 +119,6 @@ DOT     :   '.';
 LPAREN  :   '(';
 RPAREN  :   ')';
 NOT     :   '!';
-
 
 WHITESPACES      
         :  [ \t\r\n\u000C]+ -> skip

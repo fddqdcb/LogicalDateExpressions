@@ -61,8 +61,14 @@ public class IntegrationTest
         t(">20.1.65 and <=17.09.1970", PersonProvider.TOM);
         t("65 or 1970 and >2009", PersonProvider.LINDA);
         t("(65 or 1970) and >2009", (Person[]) null);
-//        t("1970 or 1975 and >1990 or 2000", PersonProvider.TOM, PersonProvider.TIM);
-
+        t("1970 or 1975 and >1990 or 2000", PersonProvider.TOM, PersonProvider.TIM);
+        t("1965 or >2000 and 2005 or 2010", PersonProvider.LINDA, PersonProvider.HELEN, PersonProvider.FRANK);
+        t("(1965 or >2000) and (2005 or 2010)", PersonProvider.HELEN, PersonProvider.FRANK);
+        t("!>1965", PersonProvider.LINDA);
+        t("!>=1965", (Person[]) null);
+        t("!(>1965)", PersonProvider.LINDA);
+        t("1970 - 1985", PersonProvider.TOM, PersonProvider.MARY, PersonProvider.JOHN, PersonProvider.SANDRA);
+        t("!1970 - 1985", PersonProvider.LINDA, PersonProvider.SAM, PersonProvider.BARBARA, PersonProvider.TIM, PersonProvider.HELEN, PersonProvider.FRANK);
     }
 
 
@@ -76,9 +82,9 @@ public class IntegrationTest
                 .createPredicateForLogicalDateExpression(input, builder, root.get("birthdate"));
         criteriaQuery.where(predicate);
         TypedQuery<Person> query = provider.em().createQuery(criteriaQuery);
-        List<Person> persons = query.getResultList();
-        
-        PersonProvider.assertContainsPerson(input, persons, expected);
+        List<Person> result = query.getResultList();
+
+        PersonProvider.assertContainsPerson(input, result, expected);
     }
 
 }
