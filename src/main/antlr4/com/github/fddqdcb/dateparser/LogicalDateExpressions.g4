@@ -8,45 +8,13 @@ stmt
         ;
 
 expr
-        :   orExpr
-        ;
-
-orExpr
-        :   leftExpr=orExpr OR rightExpr=orExpr
-        |   andExpr
-        ;
-
-andExpr
-        :   leftExpr=andExpr AND rightExpr=andExpr
-        |   parenExpr
-        ;
-
-parenExpr
-        :   LPAREN expr RPAREN
-        |   notExpr
-        ;
-
-notExpr
-        :   NOT expr
-        |   date
-        ;
-
-date
-        :   singleDateExpr
-        |   compareDateExpr
-        |   fromToDateExpr
-        ;
-
-singleDateExpr
-        :   regularDate
-        ;
-
-compareDateExpr
-        :   (GT | GE | LT | LE) regularDate
-        ;
-
-fromToDateExpr
-        :   fromDate=regularDate TO toDate=regularDate
+        :   leftExpr=expr AND rightExpr=expr            # andExpr
+        |   leftExpr=expr OR rightExpr=expr             # orExpr
+        |   LPAREN expr RPAREN                          # parenExpr
+        |   NOT expr                                    # notExpr
+        |   (GT | GE | LT | LE) regularDate             # compareDateExpr
+        |   fromDate=regularDate TO toDate=regularDate  # fromToDateExpr
+        |   regularDate                                 # singleDateExpr
         ;
 
 regularDate

@@ -53,6 +53,8 @@ public class IntegrationTest
     {
         t("1.1.1915", (Person[]) null);
         t("17.9.70", PersonProvider.TOM);
+        t("9.70", PersonProvider.TOM);
+        t("1970", PersonProvider.TOM);
         t("<15.09.1967", PersonProvider.LINDA);
         t("<15.09.1972", PersonProvider.LINDA, PersonProvider.TOM);
         t("20.1.65 or 17.09.1970", PersonProvider.LINDA, PersonProvider.TOM);
