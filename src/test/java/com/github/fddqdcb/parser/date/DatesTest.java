@@ -1,5 +1,6 @@
-package com.github.fddqdcb.dateparser;
+package com.github.fddqdcb.parser.date;
 
+import com.github.fddqdcb.parser.date.Dates;
 import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;

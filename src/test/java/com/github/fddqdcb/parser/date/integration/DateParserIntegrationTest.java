@@ -1,16 +1,18 @@
-package com.github.fddqdcb.dateparser.integrationtest;
+package com.github.fddqdcb.parser.date.integration;
 
-import com.github.fddqdcb.dateparser.integrationtest.data.Person;
-import com.github.fddqdcb.dateparser.integrationtest.data.PersonProvider;
-import com.github.fddqdcb.dateparser.integrationtest.util.EntityManagerProvider;
-import com.github.fddqdcb.dateparser.DatePredicates;
+import com.github.fddqdcb.parser.data.Person;
+import com.github.fddqdcb.parser.data.PersonProvider;
+import com.github.fddqdcb.parser.util.EntityManagerProvider;
+import com.github.fddqdcb.parser.date.DatePredicates;
 import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -21,10 +23,10 @@ import org.slf4j.LoggerFactory;
  *
  * @author
  */
-public class IntegrationTest
+public class DateParserIntegrationTest
 {
 
-    private static final Logger LOG = LoggerFactory.getLogger(IntegrationTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DateParserIntegrationTest.class);
 
     @Rule
     public EntityManagerProvider provider = EntityManagerProvider.withUnit("integration-test");
@@ -48,7 +50,18 @@ public class IntegrationTest
     }
 
 
+    @After
+    public void clearDatabase()
+    {
+        provider.begin();
+        int count = provider.em().createQuery("delete from Person p", Person.class).executeUpdate();
+        provider.commit();
+        LOG.debug("{} Persons deleted", count);
+    }
+
+
     @Test
+//    @Ignore
     public void test()
     {
         t("1.1.1915", (Person[]) null);
@@ -81,7 +94,7 @@ public class IntegrationTest
         CriteriaQuery<Person> criteriaQuery = builder.createQuery(Person.class);
         Root<Person> root = criteriaQuery.from(Person.class);
         Predicate predicate = DatePredicates
-                .createPredicateForLogicalDateExpression(input, builder, root.get("birthdate"));
+                .createPredicateForDateExpression(input, builder, root.get("birthdate"));
         criteriaQuery.where(predicate);
         TypedQuery<Person> query = provider.em().createQuery(criteriaQuery);
         List<Person> result = query.getResultList();

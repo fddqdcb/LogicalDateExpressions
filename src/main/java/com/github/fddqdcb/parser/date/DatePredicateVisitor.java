@@ -1,6 +1,6 @@
-package com.github.fddqdcb.dateparser;
+package com.github.fddqdcb.parser.date;
 
-import com.github.fddqdcb.dateparser.Dates.Bound;
+import com.github.fddqdcb.parser.date.Dates.Bound;
 import java.time.LocalDate;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Expression;
@@ -115,8 +115,7 @@ public class DatePredicateVisitor extends LogicalDateExpressionsBaseVisitor<Pred
             LocalDate upper = getDate(ctx.regularDate(), Bound.upper).plusDays(1);
             return builder.lessThan(expression, upper);
         }
-        throw new IllegalStateException(
-                String.format("compareDateExpr is set but no compare-expression is givens"));
+        throw new IllegalStateException("compareDateExpr is set but no compare-expression is givens");
     }
 
 

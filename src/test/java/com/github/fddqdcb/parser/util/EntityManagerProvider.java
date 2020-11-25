@@ -1,4 +1,4 @@
-package com.github.fddqdcb.dateparser.integrationtest.util;
+package com.github.fddqdcb.parser.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

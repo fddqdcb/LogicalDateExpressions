@@ -1,4 +1,4 @@
-package com.github.fddqdcb.dateparser;
+package com.github.fddqdcb.parser.date;
 
 
 /**

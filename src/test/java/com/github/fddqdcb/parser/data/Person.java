@@ -1,4 +1,4 @@
-package com.github.fddqdcb.dateparser.integrationtest.data;
+package com.github.fddqdcb.parser.data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,24 +26,29 @@ public class Person implements Serializable
 
     private LocalDate birthdate;
 
+    private Double decimalNumber;
+    private Integer integerNumber;
+
 
     public Person()
     {
     }
 
 
-    public Person(Long id, String name, LocalDate birthdate)
+    public Person(Long id, String name, LocalDate birthdate, Double decimalNumber, Integer integerNumber)
     {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
+        this.decimalNumber = decimalNumber;
+        this.integerNumber = integerNumber;
     }
 
 
     @Override
     public String toString()
     {
-        return "Person{" + "id=" + id + ", name=" + name + ", birthdate=" + birthdate + '}';
+        return "Person{" + "id=" + id + ", name=" + name + ", birthdate=" + birthdate + ", decimalNumber=" + decimalNumber + ", integerNumber=" + integerNumber + '}';
     }
 
 
@@ -113,6 +118,30 @@ public class Person implements Serializable
     public void setBirthdate(LocalDate birthdate)
     {
         this.birthdate = birthdate;
+    }
+
+
+    public Double getDecimalNumber()
+    {
+        return decimalNumber;
+    }
+
+
+    public void setDecimalNumber(Double decimalNumber)
+    {
+        this.decimalNumber = decimalNumber;
+    }
+
+
+    public Integer getIntegerNumber()
+    {
+        return integerNumber;
+    }
+
+
+    public void setIntegerNumber(Integer integerNumber)
+    {
+        this.integerNumber = integerNumber;
     }
 
 }

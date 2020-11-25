@@ -1,4 +1,4 @@
-package com.github.fddqdcb.dateparser;
+package com.github.fddqdcb.parser;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;

@@ -1,5 +1,6 @@
-package com.github.fddqdcb.dateparser;
+package com.github.fddqdcb.parser.date;
 
+import com.github.fddqdcb.parser.date.DateParseException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
